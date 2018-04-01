@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Square } from '../../model/square';
 
 @Component({
   selector: 'sdk-atomic-square',
@@ -9,7 +10,12 @@ export class AtomicSquareComponent implements OnInit {
 
   constructor() { }
 
+  square: Square;
+
   ngOnInit() {
+    this.square = new Square();
+    this.square.isOriginal = true;
+    this.square.value = 3;
   }
 
 }
