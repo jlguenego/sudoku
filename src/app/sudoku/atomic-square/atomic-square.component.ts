@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Square } from '../../model/square';
 
+let value = 0;
+
 @Component({
   selector: 'sdk-atomic-square',
   templateUrl: './atomic-square.component.html',
@@ -13,9 +15,10 @@ export class AtomicSquareComponent implements OnInit {
   square: Square;
 
   ngOnInit() {
+    value++;
     this.square = new Square();
     this.square.isOriginal = true;
-    this.square.value = 3;
+    this.square.value = value % 9 + 1;
   }
 
 }
