@@ -51,6 +51,13 @@ export class SudokuState {
         return this.set(row, col, 0);
     }
 
+    setCommand(value) {
+        const result = new SudokuState();
+        result.rows = this.rows;
+        result.commandValue = value;
+        return result;
+    }
+
 
 }
 

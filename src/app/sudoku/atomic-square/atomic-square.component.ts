@@ -4,10 +4,7 @@ import { SudokuState } from '../../model/sudoku-state';
 import { Store, select } from '@ngrx/store';
 import { ActionType } from '../../model/action-type';
 import { Observable } from 'rxjs/Observable';
-
-interface AppState {
-  state: SudokuState
-}
+import { AppState } from '../../model/app-state';
 
 @Component({
   selector: 'sdk-atomic-square',

@@ -12,6 +12,9 @@ export function sudokuReducer(state: SudokuState = initialState, action: SudokuA
         case ActionType.REMOVE_VALUE:
             return state.remove(action.data.row, action.data.col);
 
+        case ActionType.SET_COMMAND_VALUE:
+            return state.setCommand(action.data.value);
+
         default:
             return state;
     }
