@@ -1,0 +1,19 @@
+:host {
+    position: relative;
+    width: 3em;
+    height: 3em;
+    background: #ddd;
+    margin: 0.5px;
+    .value {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        width: 50%;
+        height: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        line-height: 150%;
+        background: #eee;
+    }
+}
+

@@ -1,0 +1,11 @@
+ul {
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 0;
+    margin: 1px;
+}
+
+li {
+    display: flex;
+    flex-flow: row nowrap;
+}
