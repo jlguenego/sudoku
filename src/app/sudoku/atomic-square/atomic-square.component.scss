@@ -1,3 +1,5 @@
+@import '~sass/styles';
+
 :host {
     cursor: pointer;
     .frame {
@@ -17,9 +19,15 @@
             line-height: 110%;
             font-size: 1.3em;
             font-weight: bold;
+            color: hsl($hue, 100%, 50%);
+            &.is-original {
+                color: black;
+            }
         }
     }
 }
+
+
 
 .possible-value {
     position: absolute;
@@ -27,6 +35,7 @@
     line-height: 100%;
     width: 33%;
     height: 33%;
+    color: hsl($hue, 100%, 50%);
 }
 
 .pos-1 {
