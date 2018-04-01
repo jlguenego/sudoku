@@ -20,11 +20,13 @@ export class AtomicSquareComponent implements OnInit {
   }
 
   square: Square;
+  commandValue: number;
 
   ngOnInit() {
     this.store.subscribe((store) => {
       this.square = store.state.rows[this.row][this.col];
       // this.square.possibleValues = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+      this.commandValue = store.state.commandValue;
     });
     
   }
@@ -32,7 +34,7 @@ export class AtomicSquareComponent implements OnInit {
   onClick(event) {
     this.store.dispatch({
       type: ActionType.SET_VALUE,
-      data: { row: this.row, col: this.col, value: 2 }
+      data: { row: this.row, col: this.col, value: this.commandValue }
     });
   }
 
