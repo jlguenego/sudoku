@@ -1,10 +1,12 @@
 import { Square } from "./square";
+import { CommandMode } from "../sudoku/command-mode.enum";
 
 export class SudokuState {
    
     // 9 rows and 9 columns
     rows: Square[][];
     commandValue: number;
+    commandMode: CommandMode = CommandMode.REAL;
 
     constructor(str?: string) {
         if (!str) {
@@ -63,9 +65,35 @@ export class SudokuState {
         return this.set(row, col, 0);
     }
 
-    setCommand(value) {
+    setCommandValue(value) {
         const result = SudokuState.from(this);
         result.commandValue = value;
+        return result;
+    }
+
+    setCommandMode(value) {
+        const result = SudokuState.from(this);
+        result.commandMode = value;
+        return result;
+    }
+
+    addPossibleValue(row: number, col: number, value: number) {
+        if (value < 0 || value > 9) {
+            return this;
+        }
+        if (!Number.isInteger(value)) {
+            return this;
+        }
+        if (this.rows[row][col].isOriginal) {
+            return this;
+        }
+        const result = SudokuState.from(this);
+        result.rows = this.rows.slice();
+        result.rows[row] = this.rows[row].slice();
+        const square = new Square(0);
+        square.possibleValues = result.rows[row][col].possibleValues.slice();
+        square.possibleValues.push(value);
+        result.rows[row][col] = square;
         return result;
     }
 

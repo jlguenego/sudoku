@@ -1,8 +1,8 @@
 <div *ngIf="isRealMode()">
-  <button (click)="onSelectDigit($event, i)" class="digit" *ngFor="let i of [1,2,3,4,5,6,7,8,9]">{{i}}</button>
+  <button [class.active]="i === value" (click)="onSelectDigit($event, i)" class="digit" *ngFor="let i of [1,2,3,4,5,6,7,8,9]">{{i}}</button>
 </div>
 <div *ngIf="isAssistantMode()">
-    <button class="assistant digit" (click)="onSelectDigit($event, i)" *ngFor="let i of [1,2,3,4,5,6,7,8,9]">{{i}}</button>
+    <button [class.active]="i === value" class="assistant digit" (click)="onSelectDigit($event, i)" *ngFor="let i of [1,2,3,4,5,6,7,8,9]">{{i}}</button>
   </div>
 <div>
   <button class="real" (click)="setAssistantMode()" *ngIf="isRealMode()">REAL MODE</button>

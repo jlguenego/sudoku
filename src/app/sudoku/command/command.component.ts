@@ -24,12 +24,6 @@ export class CommandComponent implements OnInit {
   }
 
   onSelectDigit(event, digit) {
-    const button = event.target;
-    const buttons = button.parentNode.querySelectorAll('button.digit');
-    buttons.forEach(btn => {
-      btn.classList.remove('active');
-    });
-    button.classList.add('active');
     this.value = digit;
     this.store.dispatch({
       type: ActionType.SET_COMMAND_VALUE,
@@ -39,10 +33,18 @@ export class CommandComponent implements OnInit {
 
   setAssistantMode() {
     this.mode = CommandMode.ASSISTANT;
+    this.store.dispatch({
+      type: ActionType.SET_COMMAND_MODE,
+      data: { value: this.mode }
+    });
   }
 
   setRealMode() {
     this.mode = CommandMode.REAL;
+    this.store.dispatch({
+      type: ActionType.SET_COMMAND_MODE,
+      data: { value: this.mode }
+    });
   }
 
   isAssistantMode() {

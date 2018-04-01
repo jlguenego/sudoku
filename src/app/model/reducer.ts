@@ -13,7 +13,13 @@ export function sudokuReducer(state: SudokuState = initialState, action: SudokuA
             return state.remove(action.data.row, action.data.col);
 
         case ActionType.SET_COMMAND_VALUE:
-            return state.setCommand(action.data.value);
+            return state.setCommandValue(action.data.value);
+
+        case ActionType.SET_COMMAND_MODE:
+            return state.setCommandMode(action.data.value);
+
+        case ActionType.ADD_POSSIBLE_VALUE:
+            return state.addPossibleValue(action.data.row, action.data.col, action.data.value);
 
         default:
             return state;
