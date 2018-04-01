@@ -33,6 +33,11 @@ export class SudokuState {
 
     }
 
+    static from(state: SudokuState) {
+        let result = new SudokuState();
+        return Object.assign(result, state);
+    }
+
     set(row: number, col: number, value: number): SudokuState {
         if (value < 0 || value > 9) {
             return this;
@@ -40,7 +45,7 @@ export class SudokuState {
         if (!Number.isInteger(value)) {
             return this;
         }
-        const result = new SudokuState();
+        const result = SudokuState.from(this);
         result.rows = this.rows.slice();
         result.rows[row] = this.rows[row].slice();
         result.rows[row][col] = new Square(value);
@@ -52,8 +57,7 @@ export class SudokuState {
     }
 
     setCommand(value) {
-        const result = new SudokuState();
-        result.rows = this.rows;
+        const result = SudokuState.from(this);
         result.commandValue = value;
         return result;
     }
