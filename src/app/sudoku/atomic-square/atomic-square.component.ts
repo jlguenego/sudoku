@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Square } from '../../model/square';
+import { SudokuState } from '../../model/sudoku-state';
+import { Store } from '@ngrx/store';
+import { ActionType } from '../../model/action-type';
 
 let value = 0;
 
@@ -13,7 +16,7 @@ export class AtomicSquareComponent implements OnInit {
   @Input() row: number;
   @Input() col: number;
 
-  constructor() { }
+  constructor(private store: Store<SudokuState>) { }
 
   square: Square;
 
@@ -26,6 +29,10 @@ export class AtomicSquareComponent implements OnInit {
 
   onClick(event) {
     console.log('onClick', event, this);
+    this.store.dispatch({
+      type: ActionType.SET_VALUE,
+      data: { row: this.row, col: this.col, value: 2 }
+    });
   }
 
 }
