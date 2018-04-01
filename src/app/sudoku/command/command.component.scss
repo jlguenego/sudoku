@@ -1,0 +1,21 @@
+@import '~sass/styles';
+button {
+    margin: 0.3em;
+    padding: 0.5em 0.9em;
+    border: 1px solid black;
+    background: #eee;
+    font-size: 1.5em;
+    &:hover {
+        background: #ddd;
+    }
+    &.active {
+        background: hsl($hue, 100%, 90%);
+    }
+}
+
+.assistant {
+    background: #fff;
+    &:hover {
+        background: #eee;
+    }
+}
