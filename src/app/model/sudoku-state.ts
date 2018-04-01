@@ -21,7 +21,11 @@ export class SudokuState {
                 row = [];
                 this.rows.push(row);
             }
-            const square = new Square(+c);
+            const d = +c;
+            const square = new Square(d);
+            if (d) {
+                square.isOriginal = true;
+            }
             row.push(square);
             if (j === 8) {
                 j = 0;
@@ -43,6 +47,9 @@ export class SudokuState {
             return this;
         }
         if (!Number.isInteger(value)) {
+            return this;
+        }
+        if (this.rows[row][col].isOriginal) {
             return this;
         }
         const result = SudokuState.from(this);
