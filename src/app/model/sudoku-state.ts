@@ -4,6 +4,7 @@ export class SudokuState {
    
     // 9 rows and 9 columns
     rows: Square[][];
+    commandValue: number;
 
     constructor(str?: string) {
         if (!str) {
@@ -33,6 +34,12 @@ export class SudokuState {
     }
 
     set(row: number, col: number, value: number): SudokuState {
+        if (value < 0 || value > 9) {
+            return this;
+        }
+        if (!Number.isInteger(value)) {
+            return this;
+        }
         const result = new SudokuState();
         result.rows = this.rows.slice();
         result.rows[row] = this.rows[row].slice();

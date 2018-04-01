@@ -27,7 +27,7 @@ export class AtomicSquareComponent implements OnInit {
   ngOnInit() {
     this.store.subscribe((store) => {
       this.square = store.state.rows[this.row][this.col];
-      this.square.possibleValues = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+      // this.square.possibleValues = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     });
     
   }
