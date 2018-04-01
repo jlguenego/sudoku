@@ -19,12 +19,9 @@ export class CommandComponent implements OnInit {
   }
 
   onSelectDigit(event, digit) {
-    console.log('event', event);
     const button = event.target;
     const buttons = button.parentNode.querySelectorAll('button.digit');
-    console.log('buttons', buttons);
     buttons.forEach(btn => {
-      console.log('btn', btn.classList);
       btn.classList.remove('active');
     });
     button.classList.add('active');

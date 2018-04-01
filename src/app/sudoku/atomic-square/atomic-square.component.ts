@@ -26,11 +26,6 @@ export class AtomicSquareComponent implements OnInit {
 
   ngOnInit() {
     this.store.subscribe((store) => {
-      console.log('observer got new store', store);
-      console.log('state.rows', store.state.rows);
-
-      console.log('this.row', this.row);
-      console.log('this.col', this.col);
       this.square = store.state.rows[this.row][this.col];
       this.square.possibleValues = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     });
@@ -38,7 +33,6 @@ export class AtomicSquareComponent implements OnInit {
   }
 
   onClick(event) {
-    console.log('onClick', event, this);
     this.store.dispatch({
       type: ActionType.SET_VALUE,
       data: { row: this.row, col: this.col, value: 2 }

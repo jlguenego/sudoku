@@ -6,7 +6,6 @@ export class SudokuState {
     rows: Square[][];
 
     constructor(str?: string) {
-        console.log('instantiate new SudokuState', str);
         if (!str) {
             return;
         }

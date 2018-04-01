@@ -3,7 +3,6 @@ import { ActionType } from "./action-type";
 import { SudokuAction } from "./sudoku-action";
 
 export function sudokuReducer(state: SudokuState = initialState, action: SudokuAction) {
-    console.log('sudokuReducer', state, action);
     switch (action.type) {
 
         case ActionType.SET_VALUE:
