@@ -1,17 +1,5 @@
 <ul>
-  <li>
-    <sdk-atomic-square></sdk-atomic-square>
-    <sdk-atomic-square></sdk-atomic-square>
-    <sdk-atomic-square></sdk-atomic-square>
-  </li>
-  <li>
-    <sdk-atomic-square></sdk-atomic-square>
-    <sdk-atomic-square></sdk-atomic-square>
-    <sdk-atomic-square></sdk-atomic-square>
-  </li>
-  <li>
-    <sdk-atomic-square></sdk-atomic-square>
-    <sdk-atomic-square></sdk-atomic-square>
-    <sdk-atomic-square></sdk-atomic-square>
+  <li *ngFor="let i of [0,1,2]">
+    <sdk-atomic-square *ngFor="let j of [0,1,2]" [row]="row+i" [col]="col+j"></sdk-atomic-square>
   </li>
 </ul>

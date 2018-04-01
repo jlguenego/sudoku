@@ -1,17 +1,5 @@
 <ul>
-  <li>
-    <sdk-middle-square></sdk-middle-square>
-    <sdk-middle-square></sdk-middle-square>
-    <sdk-middle-square></sdk-middle-square>
-  </li>
-  <li>
-    <sdk-middle-square></sdk-middle-square>
-    <sdk-middle-square></sdk-middle-square>
-    <sdk-middle-square></sdk-middle-square>
-  </li>
-  <li>
-    <sdk-middle-square></sdk-middle-square>
-    <sdk-middle-square></sdk-middle-square>
-    <sdk-middle-square></sdk-middle-square>
+  <li *ngFor="let i of [0,3,6]">
+    <sdk-middle-square *ngFor="let j of [0,3,6]" [row]="i" [col]="j"></sdk-middle-square>
   </li>
 </ul>

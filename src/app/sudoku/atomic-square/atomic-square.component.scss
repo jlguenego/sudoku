@@ -1,20 +1,22 @@
 :host {
-    position: relative;
-    width: 3em;
-    height: 3em;
-    background: #ddd;
-    margin: 0.5px;
-    .value {
+    .frame {
         position: relative;
-        top: 50%;
-        left: 50%;
-        width: 50%;
-        height: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-        line-height: 110%;
-        font-size: 1.3em;
-        font-weight: bold;
+        width: 3em;
+        height: 3em;
+        background: #ddd;
+        margin: 0.5px;
+        .value {
+            position: relative;
+            top: 50%;
+            left: 50%;
+            width: 50%;
+            height: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            line-height: 110%;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
     }
 }
 
@@ -30,34 +32,42 @@
     top: 0%;
     left: 0%;
 }
+
 .pos-2 {
     top: 0%;
     left: 33%;
 }
+
 .pos-3 {
     top: 0%;
     left: 66%;
 }
+
 .pos-4 {
     top: 33%;
     left: 0%;
 }
+
 .pos-5 {
     top: 33%;
     left: 33%;
 }
+
 .pos-6 {
     top: 33%;
     left: 66%;
 }
+
 .pos-7 {
     top: 66%;
     left: 0%;
 }
+
 .pos-8 {
     top: 66%;
     left: 33%;
 }
+
 .pos-9 {
     top: 66%;
     left: 66%;

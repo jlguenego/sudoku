@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'sdk-middle-square',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./middle-square.component.css']
 })
 export class MiddleSquareComponent implements OnInit {
+
+  @Input() row: number;
+  @Input() col: number;
 
   constructor() { }
 
