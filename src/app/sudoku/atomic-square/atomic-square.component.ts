@@ -19,6 +19,7 @@ export class AtomicSquareComponent implements OnInit {
     this.square = new Square();
     this.square.isOriginal = true;
     this.square.value = value % 9 + 1;
+    this.square.possibleValues = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   }
 
 }

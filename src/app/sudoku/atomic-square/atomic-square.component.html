@@ -1,1 +1,3 @@
 <div class="value" [class.isOriginal]="square.isOriginal">{{square.value}}</div>
+
+<div *ngFor="let v of square.possibleValues" [ngClass]="'possible-value pos-' + v">{{v}}</div>

@@ -17,3 +17,48 @@
         font-weight: bold;
     }
 }
+
+.possible-value {
+    position: absolute;
+    font-size: 0.7em;
+    line-height: 100%;
+    width: 33%;
+    height: 33%;
+}
+
+.pos-1 {
+    top: 0%;
+    left: 0%;
+}
+.pos-2 {
+    top: 0%;
+    left: 33%;
+}
+.pos-3 {
+    top: 0%;
+    left: 66%;
+}
+.pos-4 {
+    top: 33%;
+    left: 0%;
+}
+.pos-5 {
+    top: 33%;
+    left: 33%;
+}
+.pos-6 {
+    top: 33%;
+    left: 66%;
+}
+.pos-7 {
+    top: 66%;
+    left: 0%;
+}
+.pos-8 {
+    top: 66%;
+    left: 33%;
+}
+.pos-9 {
+    top: 66%;
+    left: 66%;
+}
