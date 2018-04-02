@@ -1,5 +1,6 @@
 import { ImmutableSudokuState } from "./sudoku-state";
 import { SudokuActionData } from "./sudoku-action";
+import { getGrid } from "./grid";
 
 export function checkValue(value: number) {
     if (value < 0 || value > 9) {
@@ -23,11 +24,6 @@ export function applySudokuRules(state: ImmutableSudokuState, data: SudokuAction
         return state.updateIn(['errors'], errors => errors.push('checksquare'));
     }
     return state;
-}
-
-function getGrid(state: ImmutableSudokuState): number[][] {
-    const grid = state.get('rows', undefined).toArray().map(n => n.toArray().map(r => r.get('value', 0)));
-    return grid;
 }
 
 function checkRow(grid: number[][], data: SudokuActionData) {

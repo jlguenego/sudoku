@@ -10,6 +10,7 @@ import { sudokuReducer } from '../model/reducer';
 
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../../environments/environment';
+import { HighlightingService } from './highlighting.service';
 
 @NgModule({
   imports: [
@@ -21,6 +22,10 @@ import { environment } from '../../environments/environment';
     })
   ],
   declarations: [SudokuComponent, GlobalSquareComponent, MiddleSquareComponent, AtomicSquareComponent, CommandComponent],
-  exports: [SudokuComponent]
+  exports: [SudokuComponent],
+  providers: [
+    HighlightingService
+  ]
+
 })
 export class SudokuModule { }

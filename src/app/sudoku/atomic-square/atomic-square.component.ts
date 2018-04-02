@@ -6,6 +6,7 @@ import { ActionType } from '../../model/action-type';
 import { Observable } from 'rxjs/Observable';
 import { AppState } from '../../model/app-state';
 import { CommandMode } from '../command-mode.enum';
+import { HighlightingService } from '../highlighting.service';
 
 @Component({
   selector: 'sdk-atomic-square',
@@ -14,10 +15,11 @@ import { CommandMode } from '../command-mode.enum';
 })
 export class AtomicSquareComponent implements OnInit {
 
+
   @Input() row: number;
   @Input() col: number;
 
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<AppState>, private highlight: HighlightingService) {
   }
 
   square: ImmutableSquare;
@@ -34,6 +36,12 @@ export class AtomicSquareComponent implements OnInit {
   }
 
   onClick(event) {
+    const value = this.square.get('value', undefined);
+    if (value > 0) {
+      console.log('clicking on a already set square');
+      this.highlight.toggle(value);
+      return;
+    };
     if (this.commandValue === 0) {
       return;
     }
