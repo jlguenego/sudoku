@@ -71,7 +71,7 @@ export class AtomicSquareComponent implements OnInit {
     return this.highlight.highlightRows[this.row]
       || this.highlight.highlightCols[this.col]
       || this.highlight.highlightSquare[Math.floor(this.row / 3)][Math.floor(this.col / 3)]
-      || this.square.get('value', 0) > 0;
+      || (this.highlight.value > 0 && this.square.get('value', 0) > 0);
   }
 
 }

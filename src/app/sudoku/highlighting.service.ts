@@ -52,6 +52,7 @@ export class HighlightingService {
     this.reset();
     this.store.subscribe((store) => {
       this.state = store.state;
+      this.refresh();
     });
   }
 
