@@ -7,6 +7,7 @@ interface SudokuStateProps {
     rows: List<List<ImmutableSquare>>;
     commandValue: number;
     commandMode: CommandMode;
+    errors: List<string>;
 }
 
 export type ImmutableSudokuState = Record<SudokuStateProps>;
@@ -14,7 +15,10 @@ export type ImmutableSudokyStateFactory = Record.Factory<SudokuStateProps>;
 
 
 export const SudokuState: ImmutableSudokyStateFactory = Record({
-    rows: List<List<ImmutableSquare>>([]), commandValue: 0, commandMode: CommandMode.REAL
+    rows: List<List<ImmutableSquare>>([]), 
+    commandValue: 0, 
+    commandMode: CommandMode.REAL,
+    errors: List<string>([])
 });
 
 const str =

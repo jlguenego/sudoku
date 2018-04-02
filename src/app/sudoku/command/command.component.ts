@@ -13,6 +13,7 @@ export class CommandComponent implements OnInit {
 
   public mode: CommandMode = CommandMode.REAL;
   public value: number;
+  public errors: string[];
 
   constructor(private element: ElementRef,
      private cd: ChangeDetectorRef,
@@ -21,6 +22,12 @@ export class CommandComponent implements OnInit {
 
 
   ngOnInit() {
+    this.store.subscribe((store) => {
+      this.errors = store.state.get('errors', undefined).toArray();
+      // this.square.possibleValues = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+      this.value = store.state.get('commandValue', undefined);
+      this.mode = store.state.get('commandMode', undefined);
+    });
   }
 
   onSelectDigit(event, digit) {

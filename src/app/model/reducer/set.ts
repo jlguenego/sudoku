@@ -1,6 +1,6 @@
 import { ImmutableSudokuState } from "../sudoku-state";
 import { SudokuAction } from "../sudoku-action";
-import { checkValue, checkSudokuRules } from "../check";
+import { checkValue, applySudokuRules } from "../check";
 
 export function set(state: ImmutableSudokuState, action: SudokuAction): ImmutableSudokuState {
     const { row, col, value } = action.data;
@@ -10,11 +10,12 @@ export function set(state: ImmutableSudokuState, action: SudokuAction): Immutabl
     if (state.getIn(['rows', row, col, 'isOriginal']) === true) {
         return state;
     }
-    if (!checkSudokuRules(state, action.data)) {
-        window.alert('error!');
-        return state;
+    let newState = applySudokuRules(state, action.data);
+    if (newState !== state) {
+        window.alert('Baaahhhh! Error ! Try again !!!');
+        return newState;
     }
-    const newState = state.updateIn(['rows', row, col, 'value'], v => {
+    newState = state.updateIn(['rows', row, col, 'value'], v => {
         return value;
     });
     return newState;

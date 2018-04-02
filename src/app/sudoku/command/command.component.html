@@ -8,3 +8,4 @@
   <button class="real" (click)="setAssistantMode()" *ngIf="isRealMode()">REAL MODE</button>
   <button class="assistant" (click)="setRealMode()" *ngIf="isAssistantMode()">ASSISTANT MODE</button>
 </div>
+{{ errors | json }}
