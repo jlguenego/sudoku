@@ -26,6 +26,7 @@ export class AtomicSquareComponent implements OnInit {
   commandValue: number;
   mode: CommandMode;
 
+
   ngOnInit() {
     this.store.subscribe((store) => {
       this.square = store.state.get('rows', undefined).get(this.row).get(this.col);
@@ -40,6 +41,10 @@ export class AtomicSquareComponent implements OnInit {
     if (value > 0) {
       console.log('clicking on a already set square');
       this.highlight.toggle(value);
+      this.store.dispatch({
+        type: ActionType.SET_COMMAND_VALUE,
+        data: { value }
+      });
       return;
     };
     if (this.commandValue === 0) {
@@ -60,6 +65,13 @@ export class AtomicSquareComponent implements OnInit {
       type: type,
       data: { row: this.row, col: this.col, value: this.commandValue }
     });
+  }
+
+  isHighlighted(): boolean {
+    return this.highlight.highlightRows[this.row]
+      || this.highlight.highlightCols[this.col]
+      || this.highlight.highlightSquare[Math.floor(this.row / 3)][Math.floor(this.col / 3)]
+      || this.square.get('value', 0) > 0;
   }
 
 }

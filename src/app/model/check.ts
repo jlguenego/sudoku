@@ -1,6 +1,6 @@
 import { ImmutableSudokuState } from "./sudoku-state";
 import { SudokuActionData } from "./sudoku-action";
-import { getGrid } from "./grid";
+import { getGrid, getSquare } from "./grid";
 
 export function checkValue(value: number) {
     if (value < 0 || value > 9) {
@@ -44,10 +44,4 @@ function checkSquare(grid: number[][], data: SudokuActionData) {
     console.log('sudokuSquare', sudokuSquare);
     const result = sudokuSquare.find(row => row.find(v => v === value) !== undefined) === undefined;
     return result;
-}
-function getSquare(grid: number[][], row: number, col: number): number[][] {
-    const squareRow = Math.floor(row / 3);
-    const squareCol = Math.floor(col / 3);
-    return grid.slice(squareRow * 3, (squareRow + 1) * 3)
-        .map(row => row.slice(squareCol * 3, (squareCol + 1) * 3));
 }

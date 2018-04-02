@@ -8,6 +8,9 @@
         height: 3em;
         background: #ddd;
         margin: 0.5px;
+        &.highlight {
+            background: #ccc;
+        }
         .value {
             position: relative;
             top: 50%;

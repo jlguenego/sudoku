@@ -4,7 +4,7 @@ import { AppState } from '../model/app-state';
 import { ImmutableSquare } from '../model/square';
 import { List } from 'immutable';
 import { ImmutableSudokuState } from '../model/sudoku-state';
-import { getGrid } from '../model/grid';
+import { getGrid, isSquareContaining } from '../model/grid';
 
 @Injectable()
 export class HighlightingService {
@@ -13,6 +13,7 @@ export class HighlightingService {
   value: number = 0;
   highlightRows: boolean[];
   highlightCols: boolean[];
+  highlightSquare: boolean[][];
 
   toggle(value: number): void {
     if (this.value === value) {
@@ -26,17 +27,25 @@ export class HighlightingService {
   refresh() {
     const grid = getGrid(this.state);
     this.reset();
+    if (this.value === 0) {
+      return;
+    }
     this.highlightRows = this.highlightRows.map(
       (n, i) => grid[i].find(n => n === this.value) !== undefined);
     this.highlightCols = this.highlightCols.map(
       (n, i) => grid.map(row => row[i]).find(n => n === this.value) !== undefined);
     console.log('this.highlightRows', this.highlightRows);
     console.log('this.highlightCols', this.highlightCols);
+    this.highlightSquare = this.highlightSquare.map(
+      (row, i) => row.map((col, j) => isSquareContaining(grid, i, j, this.value))
+    );
+    console.log('this.highlightSquare', this.highlightSquare);
   }
 
   reset() {
     this.highlightRows = new Array(9).fill(false);
     this.highlightCols = new Array(9).fill(false);
+    this.highlightSquare = new Array(3).fill(new Array(3).fill(false));
   }
 
   constructor(private store: Store<AppState>) {
