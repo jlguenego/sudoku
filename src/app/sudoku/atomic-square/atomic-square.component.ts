@@ -47,16 +47,12 @@ export class AtomicSquareComponent implements OnInit {
       });
       return;
     };
+
+
     if (this.commandValue === 0) {
       return;
     }
-    if (this.square.get('value', undefined) !== 0) {
-      this.store.dispatch({
-        type: ActionType.REMOVE_VALUE,
-        data: { row: this.row, col: this.col }
-      });
-      return;
-    }
+
     let type = ActionType.SET_VALUE;
     if (this.mode === CommandMode.ASSISTANT) {
       type = ActionType.TOGGLE_POSSIBLE_VALUE;
