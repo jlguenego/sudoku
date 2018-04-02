@@ -17,7 +17,7 @@ export class AtomicSquareComponent implements OnInit {
   @Input() row: number;
   @Input() col: number;
 
-  constructor(private store: Store<AppState>) { 
+  constructor(private store: Store<AppState>) {
   }
 
   square: ImmutableSquare;
@@ -27,14 +27,22 @@ export class AtomicSquareComponent implements OnInit {
   ngOnInit() {
     this.store.subscribe((store) => {
       this.square = store.state.get('rows', undefined).get(this.row).get(this.col);
+      console.log('this.square.value', this.square.value);
       // this.square.possibleValues = [1, 2, 3, 4, 5, 6, 7, 8, 9];
       this.commandValue = store.state.get('commandValue', undefined);
       this.mode = store.state.get('commandMode', undefined);
     });
-    
+
   }
 
   onClick(event) {
+    if (this.square.get('value', undefined) !== 0) {
+      this.store.dispatch({
+        type: ActionType.REMOVE_VALUE,
+        data: { row: this.row, col: this.col }
+      });
+      return;
+    }
     let type = ActionType.SET_VALUE;
     if (this.mode === CommandMode.ASSISTANT) {
       type = ActionType.ADD_POSSIBLE_VALUE;

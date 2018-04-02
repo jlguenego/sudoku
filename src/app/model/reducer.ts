@@ -12,14 +12,15 @@ export function sudokuReducer(state: ImmutableSudokuState = initialState, action
             const newState = set(state, action);
             return newState;
 
-        // case ActionType.REMOVE_VALUE:
-        //     return state.remove(action.data.row, action.data.col);
+        case ActionType.REMOVE_VALUE:
+            const data = {value: 0, ...action.data};
+            return set(state, {...action, data});
 
         case ActionType.SET_COMMAND_VALUE:
             return setCommandValue(state, action);
 
-        // case ActionType.SET_COMMAND_MODE:
-        //     return state.setCommandMode(action.data.value);
+        case ActionType.SET_COMMAND_MODE:
+            return state.set('commandMode', action.data.value);
 
         // case ActionType.ADD_POSSIBLE_VALUE:
         //     return state.addPossibleValue(action.data.row, action.data.col, action.data.value);

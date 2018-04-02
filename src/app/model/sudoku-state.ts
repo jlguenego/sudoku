@@ -75,11 +75,7 @@ export const initialState = state;
 
 
 
-//     setCommandMode(value) {
-//         const result = SudokuState.from(this);
-//         result.commandMode = value;
-//         return result;
-//     }
+
 
 //     addPossibleValue(row: number, col: number, value: number) {
 //         if (value < 0 || value > 9) {
