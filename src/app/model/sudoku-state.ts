@@ -1,10 +1,10 @@
-import { Square } from "./square";
+import { Square, ImmutableSquare } from "./square";
 import { CommandMode } from "../sudoku/command-mode.enum";
 
 export class SudokuState {
-   
+
     // 9 rows and 9 columns
-    rows: Square[][];
+    rows: ImmutableSquare[][];
     commandValue: number;
     commandMode: CommandMode = CommandMode.REAL;
 
@@ -24,10 +24,7 @@ export class SudokuState {
                 this.rows.push(row);
             }
             const d = +c;
-            const square = new Square(d);
-            if (d) {
-                square.isOriginal = true;
-            }
+            const square: ImmutableSquare = new Square({ value: +c, isOriginal: (+c !== 0) });
             row.push(square);
             if (j === 8) {
                 j = 0;
@@ -51,13 +48,13 @@ export class SudokuState {
         if (!Number.isInteger(value)) {
             return this;
         }
-        if (this.rows[row][col].isOriginal) {
+        if (this.rows[row][col].get('isOriginal', false)) {
             return this;
         }
         const result = SudokuState.from(this);
         result.rows = this.rows.slice();
         result.rows[row] = this.rows[row].slice();
-        result.rows[row][col] = new Square(value);
+        result.rows[row][col] = new Square({ value });
         return result;
     }
 
@@ -84,16 +81,14 @@ export class SudokuState {
         if (!Number.isInteger(value)) {
             return this;
         }
-        if (this.rows[row][col].isOriginal) {
+        if (this.rows[row][col].get('isOriginal', false)) {
             return this;
         }
         const result = SudokuState.from(this);
         result.rows = this.rows.slice();
         result.rows[row] = this.rows[row].slice();
-        const square = new Square(0);
-        square.possibleValues = result.rows[row][col].possibleValues.slice();
-        square.possibleValues.push(value);
-        result.rows[row][col] = square;
+        const square = result.rows[row][col];
+        result.rows[row][col] = square.updateIn(['possibleValues'], values => values.push(value));
         return result;
     }
 

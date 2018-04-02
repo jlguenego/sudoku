@@ -1,9 +1,14 @@
-export class Square {
-    value: number;
-    possibleValues: number[] = [];
-    isOriginal: boolean = false;;
+import { Record, List } from 'immutable';
 
-    constructor(value: number) {
-        this.value = value;
-    }
+interface SquareProps {
+    value: number;
+    isOriginal: boolean;
+    possibleValues: List<number>;
 }
+
+export type ImmutableSquare = Record<SquareProps>;
+
+export const Square = Record({ value: 0, isOriginal: false, possibleValues: List<number>() });
+
+
+
