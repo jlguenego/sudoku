@@ -7,8 +7,6 @@ interface SquareProps {
 }
 
 export type ImmutableSquare = Record<SquareProps>;
+export type ImmutableSquareFactory = Record.Factory<SquareProps>;
 
-export const Square = Record({ value: 0, isOriginal: false, possibleValues: List<number>() });
-
-
-
+export const Square: ImmutableSquareFactory = Record({ value: 0, isOriginal: false, possibleValues: List<number>() });

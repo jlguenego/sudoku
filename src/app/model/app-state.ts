@@ -1,5 +1,5 @@
-import { SudokuState } from "./sudoku-state";
+import { ImmutableSudokuState } from "./sudoku-state";
 
 export interface AppState {
-    state: SudokuState
+    state: ImmutableSudokuState
 }

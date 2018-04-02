@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Square } from '../../model/square';
+import { ImmutableSquare } from '../../model/square';
 import { SudokuState } from '../../model/sudoku-state';
 import { Store, select } from '@ngrx/store';
 import { ActionType } from '../../model/action-type';
@@ -20,16 +20,16 @@ export class AtomicSquareComponent implements OnInit {
   constructor(private store: Store<AppState>) { 
   }
 
-  square: Square;
+  square: ImmutableSquare;
   commandValue: number;
   mode: CommandMode;
 
   ngOnInit() {
     this.store.subscribe((store) => {
-      this.square = store.state.rows[this.row][this.col];
+      this.square = store.state.get('rows', undefined).get(this.row).get(this.col);
       // this.square.possibleValues = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-      this.commandValue = store.state.commandValue;
-      this.mode = store.state.commandMode;
+      this.commandValue = store.state.get('commandValue', undefined);
+      this.mode = store.state.get('commandMode', undefined);
     });
     
   }
