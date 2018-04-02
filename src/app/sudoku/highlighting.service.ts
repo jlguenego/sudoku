@@ -11,8 +11,8 @@ export class HighlightingService {
 
   state: ImmutableSudokuState;
   value: number = 0;
-  highlightRows: number[];
-  highlightCols: number[];
+  highlightRows: boolean[];
+  highlightCols: boolean[];
 
   toggle(value: number): void {
     if (this.value === value) {
@@ -24,13 +24,14 @@ export class HighlightingService {
   }
 
   refresh() {
-    console.log('this.value', this.value)
     const grid = getGrid(this.state);
     this.reset();
-    this.highlightRows.map((n, i) => {
-      return grid[i].find(n => n === this.value) !== undefined
-    });
+    this.highlightRows = this.highlightRows.map(
+      (n, i) => grid[i].find(n => n === this.value) !== undefined);
+    this.highlightCols = this.highlightCols.map(
+      (n, i) => grid.map(row => row[i]).find(n => n === this.value) !== undefined);
     console.log('this.highlightRows', this.highlightRows);
+    console.log('this.highlightCols', this.highlightCols);
   }
 
   reset() {
