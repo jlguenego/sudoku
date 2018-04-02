@@ -31,10 +31,12 @@ export class AtomicSquareComponent implements OnInit {
       this.commandValue = store.state.get('commandValue', undefined);
       this.mode = store.state.get('commandMode', undefined);
     });
-
   }
 
   onClick(event) {
+    if (this.commandValue === 0) {
+      return;
+    }
     if (this.square.get('value', undefined) !== 0) {
       this.store.dispatch({
         type: ActionType.REMOVE_VALUE,
