@@ -1,16 +1,14 @@
 import { ImmutableSudokuState } from "../sudoku-state";
 import { SudokuAction } from "../sudoku-action";
+import { checkValue } from "../check";
 
 export function togglePossibleValue(state: ImmutableSudokuState, action: SudokuAction): ImmutableSudokuState {
     const {value, row, col} = action.data;
-    if (value < 0 || value > 9) {
-        return this;
-    }
-    if (!Number.isInteger(value)) {
-        return this;
+    if (!checkValue(value)) {
+        return state;
     }
     if (state.getIn(['rows', row, col, 'isOriginal'])) {
-        return this;
+        return state;
     }
     return state.updateIn(['rows', row, col, 'possibleValues'], pv => {
         const index = pv.findIndex(n => n === value);
