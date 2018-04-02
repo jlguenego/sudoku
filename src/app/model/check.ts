@@ -19,7 +19,9 @@ export function applySudokuRules(state: ImmutableSudokuState, data: SudokuAction
     if (checkCol(grid, data) === false) {
         return state.updateIn(['errors'], errors => errors.push('checkcol'));
     }
-    // checkSquare(grid, data);
+    if (checkSquare(grid, data) === false) {
+        return state.updateIn(['errors'], errors => errors.push('checksquare'));
+    }
     return state;
 }
 
@@ -32,17 +34,24 @@ function checkRow(grid: number[][], data: SudokuActionData) {
     const { value, row, col } = data;
     const sudokuRow = grid[row];
     const result = (sudokuRow.find(n => n === value) === undefined);
-    console.log('check row: ', result);
     return result;
 }
 function checkCol(grid: number[][], data: SudokuActionData) {
     const { value, row, col } = data;
     const sudokuCol = grid.map(row => row[col]);
-    console.log('sudokuCol: ', sudokuCol);
     const result = (sudokuCol.find(n => n === value) === undefined);
-    console.log('check col: ', result);
     return result;
 }
 function checkSquare(grid: number[][], data: SudokuActionData) {
-    return true;
+    const { value, row, col } = data;
+    const sudokuSquare = getSquare(grid, row, col);
+    console.log('sudokuSquare', sudokuSquare);
+    const result = sudokuSquare.find(row => row.find(v => v === value) !== undefined) === undefined;
+    return result;
+}
+function getSquare(grid: number[][], row: number, col: number): number[][] {
+    const squareRow = Math.floor(row / 3);
+    const squareCol = Math.floor(col / 3);
+    return grid.slice(squareRow * 3, (squareRow + 1) * 3)
+        .map(row => row.slice(squareCol * 3, (squareCol + 1) * 3));
 }
