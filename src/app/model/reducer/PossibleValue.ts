@@ -1,9 +1,9 @@
 import { ImmutableSudokuState } from "../sudoku-state";
-import { SudokuAction } from "../sudoku-action";
+import { SudokuAction, SudokuActionData } from "../sudoku-action";
 import { checkValue } from "../check";
 
 export function togglePossibleValue(state: ImmutableSudokuState, action: SudokuAction): ImmutableSudokuState {
-    const {value, row, col} = action.data;
+    const { value, row, col } = action.data;
     if (!checkValue(value)) {
         return state;
     }
@@ -17,4 +17,16 @@ export function togglePossibleValue(state: ImmutableSudokuState, action: SudokuA
         }
         return pv.push(value);
     });
+}
+
+export function removePossibleValueSameSquare(
+    state: ImmutableSudokuState,
+    data: SudokuActionData): ImmutableSudokuState {
+
+    const { row, col, value } = data;
+    const rows = new Array(3).map((n, i) => i + 3 * Math.floor(row / 3));
+    const cols = new Array(3).map((n, i) => i + 3 * Math.floor(col / 3));
+
+    const newState = state;
+    return newState;
 }
