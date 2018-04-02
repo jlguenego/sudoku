@@ -4,6 +4,7 @@ import { SudokuAction } from "./sudoku-action";
 
 import { set } from "./reducer/set";
 import { setCommandValue } from "./reducer/setCommandValue";
+import { addPossibleValue } from "./reducer/addPossibleValue";
 
 export function sudokuReducer(state: ImmutableSudokuState = initialState, action: SudokuAction) {
     switch (action.type) {
@@ -22,8 +23,8 @@ export function sudokuReducer(state: ImmutableSudokuState = initialState, action
         case ActionType.SET_COMMAND_MODE:
             return state.set('commandMode', action.data.value);
 
-        // case ActionType.ADD_POSSIBLE_VALUE:
-        //     return state.addPossibleValue(action.data.row, action.data.col, action.data.value);
+        case ActionType.ADD_POSSIBLE_VALUE:
+            return addPossibleValue(state, action);
 
         default:
             return state;
