@@ -55,9 +55,8 @@ function makeImmutableSudokuState(str: string): ImmutableSudokuState {
     }
     const immutableRows = fromJS(rows);
     console.log('immutableRows', immutableRows);
-    return new SudokuState({ rows: immutableRows });
+    return SudokuState({ rows: immutableRows });
 }
 
-const state: ImmutableSudokuState = makeImmutableSudokuState(str);
+export const initialState: ImmutableSudokuState = makeImmutableSudokuState(str);
 
-export const initialState = state;
