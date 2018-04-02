@@ -10,12 +10,14 @@ export function set(state: ImmutableSudokuState, action: SudokuAction): Immutabl
     if (state.getIn(['rows', row, col, 'isOriginal']) === true) {
         return state;
     }
-    let newState = applySudokuRules(state, action.data);
-    if (newState !== state) {
-        window.alert('Baaahhhh! Error ! Try again !!!');
-        return newState;
+    if (value) {
+        const newState = applySudokuRules(state, action.data);
+        if (newState !== state) {
+            window.alert('Baaahhhh! Error ! Try again !!!');
+            return newState;
+        }
     }
-    newState = state.updateIn(['rows', row, col, 'value'], v => {
+    const newState = state.updateIn(['rows', row, col, 'value'], v => {
         return value;
     });
     return newState;
