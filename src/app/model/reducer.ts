@@ -4,7 +4,7 @@ import { SudokuAction } from "./sudoku-action";
 
 import { set } from "./reducer/set";
 import { setCommandValue } from "./reducer/setCommandValue";
-import { addPossibleValue } from "./reducer/addPossibleValue";
+import { togglePossibleValue } from "./reducer/PossibleValue";
 
 export function sudokuReducer(state: ImmutableSudokuState = initialState, action: SudokuAction) {
     switch (action.type) {
@@ -14,8 +14,8 @@ export function sudokuReducer(state: ImmutableSudokuState = initialState, action
             return newState;
 
         case ActionType.REMOVE_VALUE:
-            const data = {value: 0, ...action.data};
-            return set(state, {...action, data});
+            const data = { value: 0, ...action.data };
+            return set(state, { ...action, data });
 
         case ActionType.SET_COMMAND_VALUE:
             return setCommandValue(state, action);
@@ -23,8 +23,8 @@ export function sudokuReducer(state: ImmutableSudokuState = initialState, action
         case ActionType.SET_COMMAND_MODE:
             return state.set('commandMode', action.data.value);
 
-        case ActionType.ADD_POSSIBLE_VALUE:
-            return addPossibleValue(state, action);
+        case ActionType.TOGGLE_POSSIBLE_VALUE:
+            return togglePossibleValue(state, action);
 
         default:
             return state;

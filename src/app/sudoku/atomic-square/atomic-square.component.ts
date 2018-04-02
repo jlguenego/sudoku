@@ -46,7 +46,7 @@ export class AtomicSquareComponent implements OnInit {
     }
     let type = ActionType.SET_VALUE;
     if (this.mode === CommandMode.ASSISTANT) {
-      type = ActionType.ADD_POSSIBLE_VALUE;
+      type = ActionType.TOGGLE_POSSIBLE_VALUE;
     }
     this.store.dispatch({
       type: type,
