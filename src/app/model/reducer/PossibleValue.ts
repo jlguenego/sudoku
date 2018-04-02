@@ -26,7 +26,7 @@ export function removePossibleValueSameSquare(
     const { row, col, value } = data;
     const rows = new Array(3).map((n, i) => i + 3 * Math.floor(row / 3));
     const cols = new Array(3).map((n, i) => i + 3 * Math.floor(col / 3));
-
+    // rows.forEach(r => );
     const newState = state;
     return newState;
 }
