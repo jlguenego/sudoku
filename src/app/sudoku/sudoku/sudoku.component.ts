@@ -10,12 +10,17 @@ import { getGrid } from '../../model/grid';
 })
 export class SudokuComponent implements OnInit {
 
+  isFinished = false;
+
   constructor(private store: Store<AppState>) {
     this.store.subscribe((store) => {
       const grid = getGrid(store.state);
       grid.map(r => r.join('')).join('').indexOf('0') === -1 &&
         setTimeout(() => {
-          window.alert('Congratulations! Finished!');
+          if (this.isFinished === false) {
+            window.alert('Congratulations! Finished!');
+            this.isFinished = true;
+          }
         }, 0);
     });
   }
