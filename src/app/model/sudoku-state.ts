@@ -4,6 +4,7 @@ import { Square, ImmutableSquare } from "./square";
 import { CommandMode } from "../model/command-mode.enum";
 
 import { Record, List, fromJS } from 'immutable';
+import { DifficultyEnum } from './difficulty.enum.js';
 
 interface SudokuStateProps {
     rows: List<List<ImmutableSquare>>;
@@ -54,11 +55,13 @@ function makeImmutableSudokuState(str: string, solutionStr: string): ImmutableSu
     return SudokuState({ rows: immutableRows, solutionStr });
 }
 
-export function newSudoku() {
+export function newSudoku(difficulty: DifficultyEnum = DifficultyEnum.EASY) {
 
     const sudoku = window['sudoku'];
 
-    const s = sudoku.generate("easy");
+    const array = ['easy', 'medium', 'hard'];
+
+    const s = sudoku.generate(array[difficulty]);
     const sol = sudoku.solve(s);
 
     const str = s.replace(/[.]/g, '0');

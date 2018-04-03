@@ -27,7 +27,7 @@ export function sudokuReducer(state: ImmutableSudokuState = initialState, action
             return togglePossibleValue(state, action);
 
         case ActionType.GENERATE_NEW_SUDOKU:
-            return newSudoku();
+            return newSudoku(action.data.difficulty);
 
         default:
             return state;

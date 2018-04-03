@@ -6,6 +6,7 @@ import { ActionType } from '../../model/action-type';
 import { ImmutableSudokuState } from '../../model/sudoku-state';
 import { getGrid } from '../../model/grid';
 import { HighlightingService } from '../highlighting.service';
+import { DifficultyEnum } from '../../model/difficulty.enum';
 
 @Component({
   selector: 'sdk-command',
@@ -18,6 +19,7 @@ export class CommandComponent implements OnInit {
   public value: number;
   public errors: string[];
   public state: ImmutableSudokuState;
+  public difficulty: DifficultyEnum = DifficultyEnum.EASY;
 
   constructor(private element: ElementRef,
     private cd: ChangeDetectorRef,
@@ -76,9 +78,10 @@ export class CommandComponent implements OnInit {
   }
 
   generate() {
-    console.log('generate');
+    console.log('generate', this.difficulty);
     this.store.dispatch({
       type: ActionType.GENERATE_NEW_SUDOKU,
+      data: { difficulty: this.difficulty }
     });
   }
 
