@@ -57,3 +57,21 @@ export function removePossibleValueSameRow(
     })
     return newState;
 }
+
+export function removePossibleValueSameCol(
+    state: ImmutableSudokuState,
+    data: SudokuActionData): ImmutableSudokuState {
+    const { row, col, value } = data;
+    const rows = new Array(9).fill(0).map((n, i) => i);
+    let newState = state;
+    rows.forEach(r => {
+        newState = newState.updateIn(['rows', r, col, 'possibleValues'], pv => {
+            const index = pv.indexOf(value);
+            if (index !== -1) {
+                return pv.delete(index);
+            }
+            return pv;
+        });
+    })
+    return newState;
+}

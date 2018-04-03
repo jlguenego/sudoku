@@ -1,7 +1,7 @@
 import { ImmutableSudokuState } from "../sudoku-state";
 import { SudokuAction } from "../sudoku-action";
 import { checkValue, applySudokuRules } from "../check";
-import { removePossibleValueSameSquare, removePossibleValueSameRow } from "./PossibleValue";
+import { removePossibleValueSameSquare, removePossibleValueSameRow, removePossibleValueSameCol } from "./PossibleValue";
 
 export function set(state: ImmutableSudokuState, action: SudokuAction): ImmutableSudokuState {
     const { row, col, value } = action.data;
@@ -23,11 +23,8 @@ export function set(state: ImmutableSudokuState, action: SudokuAction): Immutabl
     });
     newState = newState.updateIn(['rows', row, col, 'possibleValues'], v => v.clear());
 
-    // remove the value on the same square
     newState = removePossibleValueSameSquare(newState, action.data);
     newState = removePossibleValueSameRow(newState, action.data);
-    // remove the value on the same row
-    // remove the value on the same col
-
+    newState = removePossibleValueSameCol(newState, action.data);
     return newState;
 }
