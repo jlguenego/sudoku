@@ -5,7 +5,7 @@ import { Store, select } from '@ngrx/store';
 import { ActionType } from '../../model/action-type';
 import { Observable } from 'rxjs/Observable';
 import { AppState } from '../../model/app-state';
-import { CommandMode } from '../command-mode.enum';
+import { CommandMode } from '../../model/command-mode.enum';
 import { HighlightingService } from '../highlighting.service';
 
 @Component({

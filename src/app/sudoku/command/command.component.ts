@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, ChangeDetectorRef } from '@angular/core';
-import { CommandMode } from '../command-mode.enum';
+import { CommandMode } from '../../model/command-mode.enum';
 import { AppState } from '../../model/app-state';
 import { Store } from '@ngrx/store';
 import { ActionType } from '../../model/action-type';

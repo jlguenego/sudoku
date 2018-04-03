@@ -1,5 +1,5 @@
 import { Square, ImmutableSquare } from "./square";
-import { CommandMode } from "../sudoku/command-mode.enum";
+import { CommandMode } from "../model/command-mode.enum";
 
 import { Record, List, fromJS } from 'immutable';
 
