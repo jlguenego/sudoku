@@ -1,3 +1,5 @@
+import './sudoku.js';
+
 import { Square, ImmutableSquare } from "./square";
 import { CommandMode } from "../model/command-mode.enum";
 
@@ -23,20 +25,14 @@ export const SudokuState: ImmutableSudokyStateFactory = Record({
     solutionStr: '',
 });
 
-const str =
-    '000005037' +
-    '006000000' +
-    '050370120' +
+const sudoku = window['sudoku'];
 
-    '000040702' +
-    '000018604' +
-    '000500080' +
+const s = sudoku.generate("easy");
+const sol = sudoku.solve(s);
 
-    '041000000' +
-    '000000873' +
-    '000080001';
+const str = s.replace(/[.]/g, '0');
 
-const solutionStr = '000865037006000508058370126080043712000018654000500389841030005000050873000080001';
+const solutionStr = sol.replace(/[.]/g, '0');
 
 function makeImmutableSudokuState(str: string, solutionStr: string): ImmutableSudokuState {
     if (!str || str.length !== 81) {
