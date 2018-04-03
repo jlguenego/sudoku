@@ -53,14 +53,18 @@ export class AtomicSquareComponent implements OnInit {
       return;
     }
 
-    let type = ActionType.SET_VALUE;
     if (this.mode === CommandMode.ASSISTANT) {
-      type = ActionType.TOGGLE_POSSIBLE_VALUE;
+      this.store.dispatch({
+        type: ActionType.TOGGLE_POSSIBLE_VALUE,
+        data: { row: this.row, col: this.col, value: this.commandValue }
+      });
+      return;
     }
     this.store.dispatch({
-      type: type,
+      type: ActionType.SET_VALUE,
       data: { row: this.row, col: this.col, value: this.commandValue }
     });
+    this.highlight.on(this.commandValue);
   }
 
   isHighlighted(): boolean {

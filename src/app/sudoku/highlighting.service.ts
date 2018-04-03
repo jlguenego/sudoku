@@ -24,6 +24,12 @@ export class HighlightingService {
     this.refresh();
   }
 
+  on(value: number): void {
+    console.log('on', value);
+    this.value = value;
+    this.refresh();
+  }
+
   refresh() {
     const grid = getGrid(this.state);
     this.reset();

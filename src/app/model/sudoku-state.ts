@@ -36,18 +36,7 @@ const str =
     '000000873' +
     '000080001';
 
-const solutionStr =
-    '000005037' +
-    '006000000' +
-    '050370120' +
-
-    '000040702' +
-    '000018604' +
-    '000500080' +
-
-    '841000000' +
-    '000000873' +
-    '000080001';
+const solutionStr = '000865037006000508058370126080043712000018654000500389841030005000050873000080001';
 
 function makeImmutableSudokuState(str: string, solutionStr: string): ImmutableSudokuState {
     if (!str || str.length !== 81) {
