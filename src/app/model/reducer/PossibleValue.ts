@@ -22,11 +22,20 @@ export function togglePossibleValue(state: ImmutableSudokuState, action: SudokuA
 export function removePossibleValueSameSquare(
     state: ImmutableSudokuState,
     data: SudokuActionData): ImmutableSudokuState {
-
     const { row, col, value } = data;
-    const rows = new Array(3).map((n, i) => i + 3 * Math.floor(row / 3));
-    const cols = new Array(3).map((n, i) => i + 3 * Math.floor(col / 3));
-    // rows.forEach(r => );
-    const newState = state;
+    const rows = new Array(3).fill(0).map((n, i) => i + 3 * Math.floor(row / 3));
+    const cols = new Array(3).fill(0).map((n, i) => i + 3 * Math.floor(col / 3));
+    let newState = state;
+    rows.forEach(r => {
+        cols.forEach(c => {
+            newState = newState.updateIn(['rows', r, c, 'possibleValues'], pv => {
+                const index = pv.indexOf(value);
+                if (index !== -1) {
+                    return pv.delete(index);
+                }
+                return pv;
+            });
+        })
+    });
     return newState;
 }
