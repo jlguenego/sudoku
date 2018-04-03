@@ -76,7 +76,6 @@ export class CommandComponent implements OnInit {
     console.log('generate');
     this.store.dispatch({
       type: ActionType.GENERATE_NEW_SUDOKU,
-      data: {},
     });
   }
 
