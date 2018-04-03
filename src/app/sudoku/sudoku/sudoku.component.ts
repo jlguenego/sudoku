@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../model/app-state';
+import { getGrid } from '../../model/grid';
 
 @Component({
   selector: 'sdk-sudoku',
@@ -7,7 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SudokuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private store: Store<AppState>) {
+    this.store.subscribe((store) => {
+      const grid = getGrid(store.state);
+      grid.map(r => r.join('')).join('').indexOf('0') === -1 &&
+        setTimeout(() => {
+          window.alert('Congratulations! Finished!');
+        }, 0);
+    });
+  }
 
   ngOnInit() {
   }

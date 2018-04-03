@@ -57,6 +57,7 @@ export class HighlightingService {
   constructor(private store: Store<AppState>) {
     this.reset();
     this.store.subscribe((store) => {
+      console.log('state change');
       this.state = store.state;
       this.refresh();
     });
