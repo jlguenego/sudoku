@@ -23,9 +23,9 @@ export function applySudokuRules(state: ImmutableSudokuState, data: SudokuAction
     if (checkSquare(grid, data) === false) {
         return state.updateIn(['errors'], errors => errors.push('checkSquare'));
     }
-    // if (checkSolution(state.get('solutionStr', ''), data) === false) {
-    //     return state.updateIn(['errors'], errors => errors.push('checkSolution'));
-    // }
+    if (checkSolution(state.get('solutionStr', ''), data) === false) {
+        return state.updateIn(['errors'], errors => errors.push('checkSolution'));
+    }
     return state;
 }
 

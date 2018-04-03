@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { ActionType } from '../../model/action-type';
 import { ImmutableSudokuState } from '../../model/sudoku-state';
 import { getGrid } from '../../model/grid';
+import { HighlightingService } from '../highlighting.service';
 
 @Component({
   selector: 'sdk-command',
@@ -20,7 +21,8 @@ export class CommandComponent implements OnInit {
 
   constructor(private element: ElementRef,
     private cd: ChangeDetectorRef,
-    private store: Store<AppState>) { }
+    private store: Store<AppState>,
+    private highlight: HighlightingService) { }
 
 
 
@@ -40,6 +42,7 @@ export class CommandComponent implements OnInit {
       type: ActionType.SET_COMMAND_VALUE,
       data: { value: this.value }
     });
+    this.highlight.on(digit);
   }
 
   setAssistantMode() {
