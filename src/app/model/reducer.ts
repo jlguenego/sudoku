@@ -1,4 +1,4 @@
-import { ImmutableSudokuState, initialState } from "./sudoku-state";
+import { ImmutableSudokuState, initialState, newSudoku } from "./sudoku-state";
 import { ActionType } from "./action-type";
 import { SudokuAction } from "./sudoku-action";
 
@@ -27,8 +27,7 @@ export function sudokuReducer(state: ImmutableSudokuState = initialState, action
             return togglePossibleValue(state, action);
 
         case ActionType.GENERATE_NEW_SUDOKU:
-            console.log('generate new sudoku');
-            return state;
+            return newSudoku();
 
         default:
             return state;

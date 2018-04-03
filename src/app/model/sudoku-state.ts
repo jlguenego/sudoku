@@ -25,14 +25,6 @@ export const SudokuState: ImmutableSudokyStateFactory = Record({
     solutionStr: '',
 });
 
-const sudoku = window['sudoku'];
-
-const s = sudoku.generate("easy");
-const sol = sudoku.solve(s);
-
-const str = s.replace(/[.]/g, '0');
-
-const solutionStr = sol.replace(/[.]/g, '0');
 
 function makeImmutableSudokuState(str: string, solutionStr: string): ImmutableSudokuState {
     if (!str || str.length !== 81) {
@@ -62,5 +54,18 @@ function makeImmutableSudokuState(str: string, solutionStr: string): ImmutableSu
     return SudokuState({ rows: immutableRows, solutionStr });
 }
 
-export const initialState: ImmutableSudokuState = makeImmutableSudokuState(str, solutionStr);
+export function newSudoku() {
+
+    const sudoku = window['sudoku'];
+
+    const s = sudoku.generate("easy");
+    const sol = sudoku.solve(s);
+
+    const str = s.replace(/[.]/g, '0');
+
+    const solutionStr = sol.replace(/[.]/g, '0');
+    return makeImmutableSudokuState(str, solutionStr);
+}
+
+export const initialState: ImmutableSudokuState = newSudoku();
 
