@@ -3,6 +3,8 @@ import { CommandMode } from '../../model/command-mode.enum';
 import { AppState } from '../../model/app-state';
 import { Store } from '@ngrx/store';
 import { ActionType } from '../../model/action-type';
+import { ImmutableSudokuState } from '../../model/sudoku-state';
+import { getGrid } from '../../model/grid';
 
 @Component({
   selector: 'sdk-command',
@@ -14,6 +16,7 @@ export class CommandComponent implements OnInit {
   public mode: CommandMode = CommandMode.REAL;
   public value: number;
   public errors: string[];
+  public state: ImmutableSudokuState;
 
   constructor(private element: ElementRef,
      private cd: ChangeDetectorRef,
@@ -23,6 +26,7 @@ export class CommandComponent implements OnInit {
 
   ngOnInit() {
     this.store.subscribe((store) => {
+      this.state = store.state;
       this.errors = store.state.get('errors', undefined).toArray();
       // this.square.possibleValues = [1, 2, 3, 4, 5, 6, 7, 8, 9];
       this.value = store.state.get('commandValue', undefined);
@@ -60,6 +64,12 @@ export class CommandComponent implements OnInit {
 
   isRealMode() {
     return this.mode === CommandMode.REAL;
+  }
+
+  log() {
+    const grid = getGrid(this.state);
+    const str = grid.map(r => r.join('')).join('');
+    console.log('solution', str);
   }
 
 }

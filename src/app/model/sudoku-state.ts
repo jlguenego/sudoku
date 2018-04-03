@@ -8,6 +8,7 @@ interface SudokuStateProps {
     commandValue: number;
     commandMode: CommandMode;
     errors: List<string>;
+    solutionStr: string;
 }
 
 export type ImmutableSudokuState = Record<SudokuStateProps>;
@@ -15,10 +16,11 @@ export type ImmutableSudokyStateFactory = Record.Factory<SudokuStateProps>;
 
 
 export const SudokuState: ImmutableSudokyStateFactory = Record({
-    rows: List<List<ImmutableSquare>>([]), 
-    commandValue: 0, 
+    rows: List<List<ImmutableSquare>>([]),
+    commandValue: 0,
     commandMode: CommandMode.REAL,
-    errors: List<string>([])
+    errors: List<string>([]),
+    solutionStr: '',
 });
 
 const str =
@@ -34,7 +36,20 @@ const str =
     '000000873' +
     '000080001';
 
-function makeImmutableSudokuState(str: string): ImmutableSudokuState {
+const solutionStr =
+    '000005037' +
+    '006000000' +
+    '050370120' +
+
+    '000040702' +
+    '000018604' +
+    '000500080' +
+
+    '841000000' +
+    '000000873' +
+    '000080001';
+
+function makeImmutableSudokuState(str: string, solutionStr: string): ImmutableSudokuState {
     if (!str || str.length !== 81) {
         throw new Error(`Cannot initiate from an not well formatted string: ${str}`);
     }
@@ -59,8 +74,8 @@ function makeImmutableSudokuState(str: string): ImmutableSudokuState {
     }
     const immutableRows = fromJS(rows);
     console.log('immutableRows', immutableRows);
-    return SudokuState({ rows: immutableRows });
+    return SudokuState({ rows: immutableRows, solutionStr });
 }
 
-export const initialState: ImmutableSudokuState = makeImmutableSudokuState(str);
+export const initialState: ImmutableSudokuState = makeImmutableSudokuState(str, solutionStr);
 
