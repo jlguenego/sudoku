@@ -27,9 +27,17 @@ export class AtomicSquareComponent implements OnInit {
   mode: CommandMode;
 
 
+  isOriginal: boolean;
+  value: number;
+  possibleValues: number[];
+
+
   ngOnInit() {
     this.store.subscribe((store) => {
       this.square = store.state.get('rows', undefined).get(this.row).get(this.col);
+      this.isOriginal = this.square.get('isOriginal', undefined);
+      this.value = this.square.get('value', undefined);
+      this.possibleValues = this.square.get('possibleValues', undefined).toArray();
       // this.square.possibleValues = [1, 2, 3, 4, 5, 6, 7, 8, 9];
       this.commandValue = store.state.get('commandValue', undefined);
       this.mode = store.state.get('commandMode', undefined);

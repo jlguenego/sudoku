@@ -1,5 +1,5 @@
 <div class="frame" (click)="onClick($event)" [class.highlight]="isHighlighted()">
-  <div class="value" [class.is-original]="square.isOriginal">{{square.value || ' '}}</div>
+  <div class="value" [class.is-original]="isOriginal">{{value || ' '}}</div>
 
-  <div *ngFor="let v of square.possibleValues" [ngClass]="'possible-value pos-' + v">{{v}}</div>
+  <div *ngFor="let v of possibleValues" [ngClass]="'possible-value pos-' + v">{{v}}</div>
 </div>
