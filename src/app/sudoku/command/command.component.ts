@@ -19,8 +19,8 @@ export class CommandComponent implements OnInit {
   public state: ImmutableSudokuState;
 
   constructor(private element: ElementRef,
-     private cd: ChangeDetectorRef,
-     private store: Store<AppState>) { }
+    private cd: ChangeDetectorRef,
+    private store: Store<AppState>) { }
 
 
 
@@ -70,6 +70,14 @@ export class CommandComponent implements OnInit {
     const grid = getGrid(this.state);
     const str = grid.map(r => r.join('')).join('');
     console.log('solution', str);
+  }
+
+  generate() {
+    console.log('generate');
+    this.store.dispatch({
+      type: ActionType.GENERATE_NEW_SUDOKU,
+      data: {},
+    });
   }
 
 }

@@ -26,6 +26,10 @@ export function sudokuReducer(state: ImmutableSudokuState = initialState, action
         case ActionType.TOGGLE_POSSIBLE_VALUE:
             return togglePossibleValue(state, action);
 
+        case ActionType.GENERATE_NEW_SUDOKU:
+            console.log('generate new sudoku');
+            return state;
+
         default:
             return state;
     }
