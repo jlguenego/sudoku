@@ -1,4 +1,4 @@
-import './sudoku.js';
+import { SudokuSolver } from '@jlguenego/sudoku-generator';
 
 import { Square, ImmutableSquare } from "./square";
 import { CommandMode } from "../model/command-mode.enum";
@@ -56,17 +56,21 @@ function makeImmutableSudokuState(str: string, solutionStr: string): ImmutableSu
 }
 
 export function newSudoku(difficulty: DifficultyEnum = DifficultyEnum.EASY) {
+    console.log('new sudoku', difficulty);
+    let total = 30;
+    if (+difficulty === DifficultyEnum.MEDIUM) {
+        total = 45;
+    } else if (+difficulty === DifficultyEnum.HARD) {
+        console.log('hard !!!');
+        total = 55;
+    }
 
-    const sudoku = window['sudoku'];
+    const grid = SudokuSolver.generate();
+    const solutionStr = grid.map(r => r.join('')).join('');
+    console.log('total', total);
+    const grid2 = SudokuSolver.carve(grid, total);
+    const str = grid2.map(r => r.join('')).join('');
 
-    const array = ['easy', 'medium', 'hard'];
-
-    const s = sudoku.generate(array[difficulty]);
-    const sol = sudoku.solve(s);
-
-    const str = s.replace(/[.]/g, '0');
-
-    const solutionStr = sol.replace(/[.]/g, '0');
     return makeImmutableSudokuState(str, solutionStr);
 }
 
