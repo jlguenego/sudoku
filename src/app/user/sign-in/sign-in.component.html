@@ -1,4 +1,4 @@
-<button *ngIf="!isLogged" (click)="showSignInDialog = true">Sign-in</button>
+<button *ngIf="!isLogged" (click)="openSigninDialog()">Sign-in</button>
 <div *ngIf="isLogged" class="user">{{email}} - {{showDifficulty() }} <button (click)="signout()" >Sign-out</button></div>
 <sdk-dialog [show]="showSignInDialog" (close)="showSignInDialog = false" class="signin-dialog">
   <div class="sign-in">

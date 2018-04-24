@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import * as firebase from 'firebase/app';
 require('firebase/auth');
 
@@ -20,19 +20,26 @@ export class SignInComponent implements OnInit {
   name: string;
   difficulty: number = 0;
 
+  constructor(public cd: ChangeDetectorRef) { }
+
   ngOnInit() {
-    firebase.auth().onAuthStateChanged(function(user) {
+    firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         console.log('authenticated', user);
+        this.email = user.email;
+        this.isLogged = true;
       } else {
         console.log('not authenticated', user);
+        this.isLogged = false;
       }
+      this.cd.detectChanges();
+
     });
   }
 
   signin() {
     console.log('signin', this.email, this.password);
-    firebase.auth().signInWithEmailAndPassword(this.email, this.password).catch(function(error) {
+    firebase.auth().signInWithEmailAndPassword(this.email, this.password).catch((error) => {
       var errorCode = error.code;
       var errorMessage = error.message;
       if (errorCode === 'auth/wrong-password') {
@@ -43,17 +50,21 @@ export class SignInComponent implements OnInit {
       console.log(error);
     });
     this.showSignInDialog = false;
-    this.isLogged = true;
   }
   signup() {
     console.log('signup', this.email, this.password);
+    firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then((user) => {
+      console.log('user', user);
+    }).catch((error) => {
+      console.log('cannot create user', error);
+    });
     this.showSignUpDialog = false;
-    this.isLogged = true;
+
   }
 
   signout() {
     console.log('signout');
-    this.isLogged = false;
+    firebase.auth().signOut();
   }
 
   showDifficulty() {
@@ -65,6 +76,13 @@ export class SignInComponent implements OnInit {
       case 2:
         return 'Hard';
     }
+  }
+
+  openSigninDialog() {
+    console.log('openSigninDialog');
+    this.showSignInDialog = true;
+    console.log('this.showSignInDialog', this.showSignInDialog);
+    this.cd.detectChanges();
   }
 
 }
