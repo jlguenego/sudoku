@@ -1,3 +1,2 @@
-<p>
-  sign-in works!
-</p>
+<button *ngIf="!isLogged" (click)="login()" >Sign-in</button>
+<div *ngIf="showSignInDialog" class="signin-dialog">Signin dialog</div>

@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignInComponent implements OnInit {
 
+  isLogged = false;
+  showSignInDialog = false;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  login() {
+    console.log('login');
+    this.showSignInDialog = true;
   }
 
 }
