@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { SudokuModule } from './sudoku/sudoku.module';
+import { UserModule } from './user/user.module';
 
 
 @NgModule({
@@ -11,7 +12,7 @@ import { SudokuModule } from './sudoku/sudoku.module';
     AppComponent
   ],
   imports: [
-    BrowserModule, SudokuModule
+    BrowserModule, SudokuModule, UserModule
   ],
   providers: [],
   bootstrap: [AppComponent]
