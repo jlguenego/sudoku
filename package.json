@@ -8,7 +8,8 @@
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "deploy": "ng build --prod && firebase deploy"
   },
   "private": true,
   "dependencies": {
@@ -23,8 +24,10 @@
     "@angular/router": "^5.2.0",
     "@ngrx/store": "^5.2.0",
     "@ngrx/store-devtools": "^5.2.0",
+    "angularfire2": "^5.0.0-rc.4",
     "bootstrap": "^4.0.0",
     "core-js": "^2.4.1",
+    "firebase": "^4.13.1",
     "immutable": "^4.0.0-rc.9",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.1",

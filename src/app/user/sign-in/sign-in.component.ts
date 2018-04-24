@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import * as firebase from 'firebase/app';
+require('firebase/auth');
+
 
 @Component({
   selector: 'sdk-sign-in',
@@ -17,13 +20,28 @@ export class SignInComponent implements OnInit {
   name: string;
   difficulty: number = 0;
 
-  constructor() { }
-
   ngOnInit() {
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        console.log('authenticated', user);
+      } else {
+        console.log('not authenticated', user);
+      }
+    });
   }
 
   signin() {
     console.log('signin', this.email, this.password);
+    firebase.auth().signInWithEmailAndPassword(this.email, this.password).catch(function(error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      if (errorCode === 'auth/wrong-password') {
+        alert('Wrong password.');
+      } else {
+        alert(errorMessage);
+      }
+      console.log(error);
+    });
     this.showSignInDialog = false;
     this.isLogged = true;
   }
@@ -34,7 +52,7 @@ export class SignInComponent implements OnInit {
   }
 
   signout() {
-    console.log('signout');    
+    console.log('signout');
     this.isLogged = false;
   }
 
