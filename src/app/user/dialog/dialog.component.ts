@@ -16,7 +16,10 @@ export class DialogComponent implements OnInit {
 
   @Output() close = new EventEmitter<undefined>();
 
-  onClose() {
+  onClose($event) {
+    if ($event.currentTarget !== $event.target) {
+      return;
+    }
     console.log('onClose');
     this.close.emit();
   }
