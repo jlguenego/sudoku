@@ -30,7 +30,10 @@ export class SignInComponent implements OnInit {
         this.email = user.email;
         this.isLogged = true;
         firebase.database().ref().child('users').child(user.uid).on("value", (snapshot) => {
-          console.log('snapshot', snapshot.val());
+          const val = snapshot.val();
+          console.log('snapshot', val[user.uid]);
+          this.difficulty = val[user.uid].difficulty;
+          console.log('difficulty', this.difficulty);
         });
 
         
