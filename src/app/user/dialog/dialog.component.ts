@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'sdk-dialog',
@@ -12,4 +12,12 @@ export class DialogComponent implements OnInit {
   ngOnInit() {
   }
 
+  @Input() show: boolean = false;
+
+  @Output() close = new EventEmitter<undefined>();
+
+  onClose() {
+    console.log('onClose');
+    this.close.emit();
+  }
 }
