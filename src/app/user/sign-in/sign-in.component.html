@@ -1,2 +1,9 @@
-<button *ngIf="!isLogged" (click)="login()" >Sign-in</button>
-<div *ngIf="showSignInDialog" class="signin-dialog">Signin dialog</div>
+<button *ngIf="!isLogged" (click)="showSignInDialog = true">Sign-in</button>
+<sdk-dialog *ngIf="showSignInDialog" class="signin-dialog">
+  <form (ngSubmit)="login()">
+    <input name="email" type="email" [(ngModel)]="email" />
+    <input name="password" type="password" [(ngModel)]="password" />
+    <button>Submit</button>
+  </form>
+
+</sdk-dialog>

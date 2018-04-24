@@ -10,6 +10,9 @@ export class SignInComponent implements OnInit {
   isLogged = false;
   showSignInDialog = false;
 
+  email: string;
+  password: string;
+
   constructor() { }
 
   ngOnInit() {
@@ -17,7 +20,7 @@ export class SignInComponent implements OnInit {
 
   login() {
     console.log('login');
-    this.showSignInDialog = true;
+    
   }
 
 }
