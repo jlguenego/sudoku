@@ -1,9 +1,43 @@
 <button *ngIf="!isLogged" (click)="showSignInDialog = true">Sign-in</button>
+<div *ngIf="isLogged" class="user">{{email}} - {{showDifficulty() }} <button (click)="signout()" >Sign-out</button></div>
 <sdk-dialog [show]="showSignInDialog" (close)="showSignInDialog = false" class="signin-dialog">
-  <form class="sign-in" (ngSubmit)="login()">
-    <input name="email" type="email" [(ngModel)]="email" />
-    <input name="password" type="password" [(ngModel)]="password" />
-    <button>Submit</button>
+  <div class="sign-in">
+    <form #signinForm="ngForm" (ngSubmit)="signin()">
+      <label>Email
+        <input name="email" type="email" [(ngModel)]="email" required/>
+      </label>
+      <label>Password
+        <input name="password" type="password" [(ngModel)]="password" required/>
+      </label>
+      <button [disabled]="signinForm.invalid">Submit</button>
+    </form>
+    <br>
+    <a href="#" (click)="showSignInDialog = false; showSignUpDialog = true;">Don't have an account ?</a>
+
+  </div>
+
+
+</sdk-dialog>
+
+<sdk-dialog [show]="showSignUpDialog" (close)="showSignUpDialog = false" class="signup-dialog">
+  <form #signupForm="ngForm" class="sign-in" (ngSubmit)="signup()">
+    <label>Email
+      <input name="email" type="email" [(ngModel)]="email" required/>
+    </label>
+    <label>Password
+      <input name="password" type="password" [(ngModel)]="password" required/>
+    </label>
+    <label>Name
+      <input name="name" type="text" [(ngModel)]="name" required/>
+    </label>
+    <label>Sudoku Level
+      <select name="difficulty" [(ngModel)]="difficulty" required>
+        <option value="0">Easy</option>
+        <option value="1">Medium</option>
+        <option value="2">Hard</option>
+      </select>
+    </label>
+    <button [disabled]="signupForm.invalid">Submit</button>
   </form>
 
 </sdk-dialog>
