@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import * as firebase from 'firebase/app';
 require('firebase/auth');
+require('firebase/database');
 
 
 @Component({
@@ -28,8 +29,20 @@ export class SignInComponent implements OnInit {
         console.log('authenticated', user);
         this.email = user.email;
         this.isLogged = true;
+        firebase.database().ref().child('users').child(user.uid).on("value", (snapshot) => {
+          console.log('snapshot', snapshot.val());
+        });
+
+        
       } else {
         console.log('not authenticated', user);
+        setTimeout(() => {
+          console.log('request');
+          firebase.database().ref().child('users').child("i0GsAixz0dT4o5hDSwiRo7Ecwjj2").on("value", (snapshot) => {
+            console.log('snapshot', snapshot.val());
+          });
+        }, 1000);
+        
         this.isLogged = false;
       }
       this.cd.detectChanges();
@@ -55,6 +68,10 @@ export class SignInComponent implements OnInit {
     console.log('signup', this.email, this.password);
     firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then((user) => {
       console.log('user', user);
+      const value = {
+        difficulty: this.difficulty
+      };
+      firebase.database().ref().child('users').child(user.uid).set(value);
     }).catch((error) => {
       console.log('cannot create user', error);
     });
