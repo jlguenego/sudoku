@@ -5,6 +5,7 @@ import { SudokuAction } from "./sudoku-action";
 import { set } from "./reducer/set";
 import { setCommandValue } from "./reducer/setCommandValue";
 import { togglePossibleValue } from "./reducer/PossibleValue";
+import { setDifficulty } from "./reducer/setDifficulty";
 
 export function sudokuReducer(state: ImmutableSudokuState = initialState, action: SudokuAction) {
     switch (action.type) {
@@ -28,6 +29,9 @@ export function sudokuReducer(state: ImmutableSudokuState = initialState, action
 
         case ActionType.GENERATE_NEW_SUDOKU:
             return newSudoku(action.data.difficulty);
+
+        case ActionType.SET_DIFFICULTY:
+            return setDifficulty(state, action);
 
         default:
             return state;

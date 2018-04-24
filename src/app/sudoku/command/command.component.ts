@@ -35,6 +35,7 @@ export class CommandComponent implements OnInit {
       // this.square.possibleValues = [1, 2, 3, 4, 5, 6, 7, 8, 9];
       this.value = store.state.get('commandValue', undefined);
       this.mode = store.state.get('commandMode', undefined);
+      this.difficulty = store.state.get('difficulty', DifficultyEnum.EASY);
     });
   }
 

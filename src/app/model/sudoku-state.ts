@@ -12,6 +12,7 @@ interface SudokuStateProps {
     commandMode: CommandMode;
     errors: List<string>;
     solutionStr: string;
+    difficulty: DifficultyEnum;
 }
 
 export type ImmutableSudokuState = Record<SudokuStateProps>;
@@ -24,6 +25,7 @@ export const SudokuState: ImmutableSudokyStateFactory = Record({
     commandMode: CommandMode.REAL,
     errors: List<string>([]),
     solutionStr: '',
+    difficulty: 0,
 });
 
 

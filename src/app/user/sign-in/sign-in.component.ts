@@ -1,5 +1,8 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import * as firebase from 'firebase/app';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../model/app-state';
+import { ActionType } from '../../model/action-type';
 require('firebase/auth');
 require('firebase/database');
 
@@ -21,7 +24,7 @@ export class SignInComponent implements OnInit {
   name: string;
   difficulty: number = 0;
 
-  constructor(public cd: ChangeDetectorRef) { }
+  constructor(public cd: ChangeDetectorRef, private store: Store<AppState>) { }
 
   ngOnInit() {
     firebase.auth().onAuthStateChanged((user) => {
@@ -32,8 +35,12 @@ export class SignInComponent implements OnInit {
         firebase.database().ref().child('users').child(user.uid).on("value", (snapshot) => {
           const val = snapshot.val();
           console.log('snapshot', val[user.uid]);
-          this.difficulty = val[user.uid].difficulty;
+          this.difficulty = +val[user.uid].difficulty;
           console.log('difficulty', this.difficulty);
+          this.store.dispatch({
+            type: ActionType.SET_DIFFICULTY,
+            data: { difficulty: this.difficulty }
+          });
         });
 
         
