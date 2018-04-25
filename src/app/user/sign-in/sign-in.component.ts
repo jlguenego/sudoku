@@ -113,4 +113,13 @@ export class SignInComponent implements OnInit {
     this.cd.detectChanges();
   }
 
+  resetPassword() {
+    console.log('sending the email for password reset');
+    this.showResetPasswordDialog = false;
+    setTimeout(() => {
+      alert('Mail sent! Please check your mailbox.');
+    }, 0);
+    
+  }
+
 }
