@@ -1,5 +1,7 @@
 <button *ngIf="!isLogged" (click)="openSigninDialog()">Sign-in</button>
-<div *ngIf="isLogged" class="user">{{email}} - {{showDifficulty() }} <button (click)="signout()" >Sign-out</button></div>
+<div *ngIf="isLogged" class="user">{{email}} - {{showDifficulty() }}
+  <button (click)="signout()">Sign-out</button>
+</div>
 <sdk-dialog [show]="showSignInDialog" (close)="showSignInDialog = false" class="signin-dialog">
   <div class="sign-in">
     <form #signinForm="ngForm" (ngSubmit)="signin()">
@@ -9,10 +11,15 @@
       <label>Password
         <input name="password" type="password" [(ngModel)]="password" required/>
       </label>
-      <button [disabled]="signinForm.invalid">Submit</button>
+      <div class="flex">
+        <button [disabled]="signinForm.invalid">Submit</button>
+        <a href="#" (click)="showSignInDialog = false; showResetPasswordDialog = true;">Password forgotten ?</a>
+      </div>
     </form>
     <br>
     <a href="#" (click)="showSignInDialog = false; showSignUpDialog = true;">Don't have an account ?</a>
+    <br>
+
 
   </div>
 
@@ -39,5 +46,20 @@
     </label>
     <button [disabled]="signupForm.invalid">Submit</button>
   </form>
+
+</sdk-dialog>
+
+<sdk-dialog [show]="showResetPasswordDialog" (close)="showResetPasswordDialog = false" class="signup-dialog">
+  <div class="sign-in">
+    <p>Please enter your email and we will send you a link to reset your password.</p>
+    <form #resetForm="ngForm" (ngSubmit)="resetPassword()">
+      <label>Email
+        <input name="email" type="email" [(ngModel)]="email" required/>
+      </label>
+
+      <button [disabled]="resetForm.invalid">Submit</button>
+    </form>
+  </div>
+
 
 </sdk-dialog>

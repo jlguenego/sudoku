@@ -17,6 +17,7 @@ export class SignInComponent implements OnInit {
   isLogged = false;
   showSignInDialog = false;
   showSignUpDialog = false;
+  showResetPasswordDialog = false;
 
   email: string;
   password: string;
