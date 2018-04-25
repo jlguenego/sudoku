@@ -4,6 +4,7 @@ import { AppState } from '../../model/app-state';
 import { ImmutableSudokuState } from '../../model/sudoku-state';
 import { DifficultyEnum } from '../../model/difficulty.enum';
 import { ActionType } from '../../model/action-type';
+import { getGrid } from '../../model/grid';
 
 @Component({
   selector: 'sdk-sidebar',
@@ -31,6 +32,12 @@ export class SidebarComponent implements OnInit {
       type: ActionType.GENERATE_NEW_SUDOKU,
       data: { difficulty: this.difficulty }
     });
+  }
+
+  log() {
+    const grid = getGrid(this.state);
+    const str = grid.map(r => r.join('')).join('');
+    console.log('actual grid', str);
   }
 
 }

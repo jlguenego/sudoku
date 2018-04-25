@@ -4,7 +4,7 @@ import { AppState } from '../../model/app-state';
 import { Store } from '@ngrx/store';
 import { ActionType } from '../../model/action-type';
 import { ImmutableSudokuState } from '../../model/sudoku-state';
-import { getGrid } from '../../model/grid';
+
 import { HighlightingService } from '../highlighting.service';
 import { DifficultyEnum } from '../../model/difficulty.enum';
 
@@ -70,11 +70,7 @@ export class CommandComponent implements OnInit {
     return this.mode === CommandMode.REAL;
   }
 
-  log() {
-    const grid = getGrid(this.state);
-    const str = grid.map(r => r.join('')).join('');
-    console.log('solution', str);
-  }
+  
 
   
 
