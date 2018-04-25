@@ -1,4 +1,4 @@
-import { ImmutableSudokuState, initialState, newSudoku } from "./sudoku-state";
+import { ImmutableSudokuState } from "./sudoku-state";
 import { ActionType } from "./action-type";
 import { SudokuAction } from "./sudoku-action";
 
@@ -6,6 +6,9 @@ import { set } from "./reducer/set";
 import { setCommandValue } from "./reducer/setCommandValue";
 import { togglePossibleValue } from "./reducer/PossibleValue";
 import { setDifficulty } from "./reducer/setDifficulty";
+import { newSudoku } from "./reducer/newSudoku";
+
+const initialState: ImmutableSudokuState = newSudoku();
 
 export function sudokuReducer(state: ImmutableSudokuState = initialState, action: SudokuAction) {
     switch (action.type) {
@@ -28,7 +31,7 @@ export function sudokuReducer(state: ImmutableSudokuState = initialState, action
             return togglePossibleValue(state, action);
 
         case ActionType.GENERATE_NEW_SUDOKU:
-            return newSudoku(action.data.difficulty);
+            return newSudoku(action.data.difficulty, state);
 
         case ActionType.SET_DIFFICULTY:
             return setDifficulty(state, action);
