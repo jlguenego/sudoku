@@ -114,8 +114,9 @@ export class SignInComponent implements OnInit {
   }
 
   resetPassword() {
-    console.log('sending the email for password reset');
+    console.log('sending the email for password reset', this.email);
     this.showResetPasswordDialog = false;
+    firebase.auth().sendPasswordResetEmail(this.email);
     setTimeout(() => {
       alert('Mail sent! Please check your mailbox.');
     }, 0);
