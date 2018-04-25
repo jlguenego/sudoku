@@ -1,0 +1,35 @@
+:host {
+    display: inline-block;
+}
+
+.sidebar {
+    display: block;
+    width: 10em;
+    padding: 0 1em;
+    font-size: 1em;
+}
+
+@import '~sass/styles';
+button {
+    display: block;
+    margin: 0.3em;
+    padding: 0.5em 0.9em;
+    width: 100%;
+    border: 1px solid black;
+    background: #eee;
+    
+    &:hover {
+        background: #ddd;
+    }
+    &.active {
+        background: hsl($hue, 100%, 90%);
+    }
+}
+
+select {
+    display: block;
+    margin: 0.3em;
+    padding: 0.5em 0.9em;
+    width: 100%;
+    border: 1px solid black;
+}

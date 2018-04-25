@@ -13,6 +13,7 @@ import { sudokuReducer } from '../model/reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../../environments/environment';
 import { HighlightingService } from './highlighting.service';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   imports: [
@@ -24,7 +25,7 @@ import { HighlightingService } from './highlighting.service';
       logOnly: environment.production // Restrict extension to log-only mode
     })
   ],
-  declarations: [SudokuComponent, GlobalSquareComponent, MiddleSquareComponent, AtomicSquareComponent, CommandComponent],
+  declarations: [SudokuComponent, GlobalSquareComponent, MiddleSquareComponent, AtomicSquareComponent, CommandComponent, SidebarComponent],
   exports: [SudokuComponent],
   providers: [
     HighlightingService
