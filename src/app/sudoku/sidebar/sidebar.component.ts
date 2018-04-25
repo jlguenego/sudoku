@@ -40,4 +40,11 @@ export class SidebarComponent implements OnInit {
     console.log('actual grid', str);
   }
 
+  save() {
+    console.log('save');
+  }
+  restore() {
+    console.log('restore');
+  }
+
 }
