@@ -19,7 +19,6 @@ export class CommandComponent implements OnInit {
   public value: number;
   public errors: string[];
   public state: ImmutableSudokuState;
-  public difficulty: DifficultyEnum = DifficultyEnum.EASY;
 
   constructor(private element: ElementRef,
     private cd: ChangeDetectorRef,
@@ -35,7 +34,6 @@ export class CommandComponent implements OnInit {
       // this.square.possibleValues = [1, 2, 3, 4, 5, 6, 7, 8, 9];
       this.value = store.state.get('commandValue', undefined);
       this.mode = store.state.get('commandMode', undefined);
-      this.difficulty = store.state.get('difficulty', DifficultyEnum.EASY);
     });
   }
 
@@ -78,12 +76,6 @@ export class CommandComponent implements OnInit {
     console.log('solution', str);
   }
 
-  generate() {
-    console.log('generate', this.difficulty);
-    this.store.dispatch({
-      type: ActionType.GENERATE_NEW_SUDOKU,
-      data: { difficulty: this.difficulty }
-    });
-  }
+  
 
 }

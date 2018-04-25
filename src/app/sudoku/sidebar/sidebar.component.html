@@ -1,5 +1,5 @@
 <div class="sidebar">
-  <button>New Sudoku</button>
+  <button (click)="generate()">New Sudoku</button>
   <select name="difficulty" [(ngModel)]="difficulty">
     <option value="0">Easy</option>
     <option value="1">Medium</option>
