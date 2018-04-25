@@ -15,13 +15,17 @@ export class SudokuComponent implements OnInit {
   constructor(private store: Store<AppState>) {
     this.store.subscribe((store) => {
       const grid = getGrid(store.state);
-      grid.map(r => r.join('')).join('').indexOf('0') === -1 &&
+      if (grid.map(r => r.join('')).join('').indexOf('0') === -1) {
         setTimeout(() => {
           if (this.isFinished === false) {
             window.alert('Congratulations! Finished!');
             this.isFinished = true;
           }
         }, 0);
+      } else {
+        this.isFinished = false;
+      }
+        
     });
   }
 
