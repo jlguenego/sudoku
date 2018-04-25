@@ -34,8 +34,8 @@ export class SignInComponent implements OnInit {
         this.isLogged = true;
         firebase.database().ref().child('users').child(user.uid).on("value", (snapshot) => {
           const val = snapshot.val();
-          console.log('snapshot', val[user.uid]);
-          this.difficulty = +val[user.uid].difficulty;
+          console.log('snapshot', val);
+          this.difficulty = +val.difficulty;
           console.log('difficulty', this.difficulty);
           this.store.dispatch({
             type: ActionType.SET_DIFFICULTY,

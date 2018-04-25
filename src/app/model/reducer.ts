@@ -7,6 +7,7 @@ import { setCommandValue } from "./reducer/setCommandValue";
 import { togglePossibleValue } from "./reducer/PossibleValue";
 import { setDifficulty } from "./reducer/setDifficulty";
 import { newSudoku } from "./reducer/newSudoku";
+import { restore } from "./reducer/restore";
 
 const initialState: ImmutableSudokuState = newSudoku();
 
@@ -35,6 +36,9 @@ export function sudokuReducer(state: ImmutableSudokuState = initialState, action
 
         case ActionType.SET_DIFFICULTY:
             return setDifficulty(state, action);
+
+        case ActionType.RESTORE:
+            return restore(action.data.value);
 
         default:
             return state;

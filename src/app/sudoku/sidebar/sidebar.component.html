@@ -6,9 +6,9 @@
     <option value="2">Hard</option>
   </select>
 
-  <button (click)="save()">Save</button>
+  <button [disabled]="user === null" (click)="save()">Save</button>
 
-  <button (click)="restore()">Restore</button>
-  
+  <button [disabled]="user === null" (click)="restore()">Restore</button>
+
   <button (click)="log()">Log</button>
 </div>
